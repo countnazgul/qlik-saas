@@ -99,6 +99,25 @@ let updateSpace = await saasInstance.Put(
 
 When requesting data Qlik will page it by default (max 100 items can be returned in a single call). If there are more records to be returned, the package will extract them all before returning the result
 
+## Errors
+
+Each method returns `promise`. Errors can be handled using the usual way:
+
+```javascript
+// Update space
+let data = {
+  name: "New name for old space",
+};
+
+let updateSpace = await saasInstance
+  .Put(`spaces/1a002233cdd44555566ee77f`, data, "application/json")
+  .catch(function (e) {
+    // do something with the error here
+    // if Qlik is raising the error then the format of the error will be { status: XXX, statusText: XXXXY, message: XXXXXXX }
+    // if Qlik is NOT raising the error then the format is: { message: XXXXXXX } (no status)
+  });
+```
+
 ## To be added
 
 - `patch` method
