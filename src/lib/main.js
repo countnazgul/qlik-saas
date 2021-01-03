@@ -1,11 +1,5 @@
 const request = require("./request");
 
-// const Get = require("./get");
-// const Post = require("./post");
-// const Delete = require("./delete");
-// const Put = require("./put");
-// const Patch = require("./patch");
-
 const Get = async function (mainConfig, path) {
   let b = request(mainConfig, path, "get");
 
