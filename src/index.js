@@ -1,35 +1,53 @@
 #!/usr/bin/env node
-const { Get, Delete, Patch, Post, Put } = require("./lib/main");
+const request = require("./lib/request");
 
 var qlikSaas = function QlikSaas(config) {
-  if (!config.url) throw new Error("URL is required");
-  if (!config.token) throw new Error("API token is required");
+  if (!config.url) throw { message: "URL parameter is required" };
+  if (!config.token) throw { message: "API token parameter is required" };
   if (!config.version) config.version = 1;
+
   config.baseURL = `https://${config.url}/api/v${config.version}`;
 
   this.Get = async function (path) {
-    let b = await Get(config, path);
-    return b;
-  };
+    if (!path) throw { message: `"path" parameter is missing` };
 
-  this.Post = async function (path, data, contentType) {
-    let b = await Post(config, path, data, contentType);
-    return b;
+    return await request(config, path, "get");
   };
 
   this.Delete = async function (path) {
-    let b = await Delete(config, path);
-    return b;
+    if (!path) throw { message: `"path" parameter is missing` };
+
+    return await request(config, path, "delete");
   };
 
-  this.Put = async function (path, data, contentType) {
-    let b = await Put(config, path, data, contentType);
-    return b;
+  this.Patch = async function (
+    path,
+    data = {},
+    contentType = "application/json"
+  ) {
+    if (!path) throw { message: `"path" parameter is missing` };
+
+    return await request(config, path, "patch", data, contentType);
   };
 
-  this.Patch = async function (path, data, contentType) {
-    let b = await Patch(config, path, data, contentType);
-    return b;
+  this.Post = async function (
+    path,
+    data = {},
+    contentType = "application/json"
+  ) {
+    if (!path) throw { message: `"path" parameter is missing` };
+
+    return await request(config, path, "post", data, contentType);
+  };
+
+  this.Put = async function (
+    path,
+    data = {},
+    contentType = "application/json"
+  ) {
+    if (!path) throw { message: `"path" parameter is missing` };
+
+    return await request(config, path, "put", data, contentType);
   };
 };
 

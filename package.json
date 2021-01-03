@@ -1,7 +1,7 @@
 {
   "name": "qlik-saas",
   "description": "NodeJS package to interact with Qlik Saas edition",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "email": "stefan.stoichev@gmail.com",
     "name": "Stefan Stoichev @countnazgul",
@@ -31,7 +31,6 @@
     "prettier": "^2.2.1"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "flatry": "^1.0.12"
+    "axios": "^0.21.1"
   }
 }
