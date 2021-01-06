@@ -13,8 +13,6 @@ let config = {
 let saasInstance = new qlikSaas(config);
 
 describe("App operations", function () {
-  it("Get app meta data with filter", async function () {});
-
   it("Import app", async function () {
     this.timeout(60000);
     let qvfFile = fs.readFileSync(process.env.QVF_PATH);
