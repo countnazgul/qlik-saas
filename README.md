@@ -42,6 +42,7 @@ Before usage the instance should be initialized:
 let config = {
   url: `tenant.eu.qlikcloud.com`,
   token: `api-key-generated-from-the-admin-console `,
+  version: XX, // default is 1
 };
 
 let saasInstance = new qlikSaas(config);

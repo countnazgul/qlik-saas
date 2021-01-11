@@ -17,7 +17,7 @@
   },
   "files": [
     "src/index.js",
-    "src/request.js/index.js"
+    "src/lib/request.js"
   ],
   "keywords": [
     "qlik",
