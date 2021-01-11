@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const request = require("./lib/request");
 
-var qlikSaas = function QlikSaas(config) {
+const qlikSaas = function QlikSaas(config) {
   if (!config.url) throw { message: "URL parameter is required" };
   if (!config.token) throw { message: "API token parameter is required" };
   if (!config.version) config.version = 1;

@@ -96,7 +96,7 @@ async function makeRequest(config, data = []) {
 }
 
 function bufferToStream(buffer) {
-  var stream = new Readable();
+  let stream = new Readable();
   stream.push(buffer);
   stream.push(null);
 
