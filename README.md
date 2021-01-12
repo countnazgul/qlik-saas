@@ -10,7 +10,7 @@ NodeJS package to communicate with Qlik Sense Saas edition.
 
 ## Install
 
-yet to be published to `npm`
+`npm install qlik-saas`
 
 ## Usage
 
@@ -150,11 +150,11 @@ At the moment the package interact with Qlik only via `API keys`
 
 ## To be added
 
-- `patch` method
-- test cases (in progress)
-- proper error handling
-- published to `npm`
-- more methods?
-- more testing with the paging functionality
-- support browser based authentication headers?
-- able to use the package in browsers?
+- [x] published to `npm`
+- [ ] `patch` method
+- [ ] test cases (in progress)
+- [ ] proper error handling
+- [ ] more methods?
+- [ ] more testing with the paging functionality
+- [ ] support browser based authentication headers?
+- [ ] able to use the package in browsers?
