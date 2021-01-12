@@ -44,7 +44,7 @@ Before usage the instance should be initialized:
 let config = {
   url: `tenant.eu.qlikcloud.com`,
   token: `api-key-generated-from-the-admin-console `,
-  version: XX, // default is 1
+  version: X, // optional. default is: 1
 };
 
 let saasInstance = new qlikSaas(config);
@@ -80,7 +80,11 @@ let data = {
   type: "shared",
 };
 
-let createSpace = await saasInstance.Post("spaces", data, "application/json");
+let createSpace = await saasInstance.Post({
+  path: "spaces",
+  data: data,
+  contentType: "application/json",
+});
 ```
 
 ### Put method
@@ -91,11 +95,11 @@ let data = {
   name: "New name for old space",
 };
 
-let updateSpace = await saasInstance.Put(
-  `spaces/1a002233cdd44555566ee77f`,
-  data,
-  "application/json"
-);
+let updateSpace = await saasInstance.Put({
+  path: `spaces/1a002233cdd44555566ee77f`,
+  data: data,
+  contentType: "application/json",
+});
 ```
 
 ## Paging
@@ -113,7 +117,11 @@ let data = {
 };
 
 let updateSpace = await saasInstance
-  .Put(`spaces/1a002233cdd44555566ee77f`, data, "application/json")
+  .Put({
+    path: `spaces/1a002233cdd44555566ee77f`,
+    data,
+    contentType: "application/json",
+  })
   .catch(function (e) {
     // do something with the error here
     // if Qlik is raising the error then the format of the error will be { status: XXX, statusText: XXXXY, message: XXXXXXX }
