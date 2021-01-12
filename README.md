@@ -148,9 +148,9 @@ At the moment the package interact with Qlik only via `API keys`
 ## To be added
 
 - [x] published to `npm`
+- [x] proper error handling
 - [ ] `patch` method
 - [ ] test cases (in progress)
-- [ ] proper error handling
 - [ ] more methods?
 - [ ] more testing with the paging functionality
 - [ ] support browser based authentication headers?
