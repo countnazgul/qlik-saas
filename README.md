@@ -65,7 +65,7 @@ let deletedSpace = await saasInstance.Delete("spaces/1a002233cdd44555566ee77f");
 ### Patch method
 
 ```javascript
-/// TBA
+// TBA
 ```
 
 ### Post method
@@ -119,6 +119,10 @@ let updateSpace = await saasInstance
   });
 ```
 
+## Authentication
+
+At the moment the package interact with Qlik only via `API keys`
+
 ## To be added
 
 - `patch` method
@@ -127,3 +131,5 @@ let updateSpace = await saasInstance
 - published to `npm`
 - more methods?
 - more testing with the paging functionality
+- support browser based authentication headers?
+- able to use the package in browsers?
