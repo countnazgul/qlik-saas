@@ -1,7 +1,7 @@
 {
   "name": "qlik-saas",
   "description": "NodeJS package to interact with Qlik Sense Saas edition",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "email": "stefan.stoichev@gmail.com",
     "name": "Stefan Stoichev @countnazgul",
@@ -24,6 +24,10 @@
     "sense",
     "saas"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/countnazgul/qlik-saas"
+  },
   "prettier": {
     "singleQuote": false
   },
