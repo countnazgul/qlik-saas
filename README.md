@@ -108,6 +108,21 @@ When requesting data Qlik will page it by default (max 100 items can be returned
 
 ## Errors
 
+- Config
+
+```javascript
+let saasInstance;
+
+try {
+  saasInstance = new qlikSaas(config);
+} catch (e) {
+  console.log(e.message);
+  process.exit(1);
+}
+```
+
+- Methods
+
 Each method returns `promise`. Errors can be handled using the usual way:
 
 ```javascript
