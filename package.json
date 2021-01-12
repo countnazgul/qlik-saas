@@ -1,20 +1,24 @@
 {
   "name": "qlik-saas",
-  "description": "NodeJS package to interact with Qlik Saas edition",
-  "version": "0.0.2",
+  "description": "NodeJS package to interact with Qlik Sense Saas edition",
+  "version": "0.1.0",
   "author": {
     "email": "stefan.stoichev@gmail.com",
     "name": "Stefan Stoichev @countnazgul",
     "url": "https://sstoichev.eu"
   },
   "license": "MIT",
-  "main": "index.js",
+  "main": "src/index.js",
   "engines": {
     "node": ">=8"
   },
   "scripts": {
     "test": "mocha test/**/*.spec.js"
   },
+  "files": [
+    "src/index.js",
+    "src/lib/request.js"
+  ],
   "keywords": [
     "qlik",
     "sense",
@@ -31,6 +35,7 @@
     "prettier": "^2.2.1"
   },
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "form-data": "^3.0.0"
   }
 }
