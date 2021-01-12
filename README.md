@@ -108,41 +108,38 @@ When requesting data Qlik will page it by default (max 100 items can be returned
 
 ## Errors
 
-- Config
+- Config - to prevent configuration errors just wrap the initialization in `try ... catch` block
 
-```javascript
-let saasInstance;
+  ```javascript
+  let saasInstance;
 
-try {
-  saasInstance = new qlikSaas(config);
-} catch (e) {
-  console.log(e.message);
-  process.exit(1);
-}
-```
+  try {
+    saasInstance = new qlikSaas(config);
+  } catch (e) {
+    console.log(e.message);
+  }
+  ```
 
-- Methods
+- Methods - once initialized each method returns `promise` and error handling can be done the usual way with `.catch()`
 
-Each method returns `promise`. Errors can be handled using the usual way:
+  ```javascript
+  // Update space
+  let data = {
+    name: "New name for old space",
+  };
 
-```javascript
-// Update space
-let data = {
-  name: "New name for old space",
-};
-
-let updateSpace = await saasInstance
-  .Put({
-    path: `spaces/1a002233cdd44555566ee77f`,
-    data,
-    contentType: "application/json",
-  })
-  .catch(function (e) {
-    // do something with the error here
-    // if Qlik is raising the error then the format of the error will be { status: XXX, statusText: XXXXY, message: XXXXXXX }
-    // if Qlik is NOT raising the error then the format is: { message: XXXXXXX } (no status)
-  });
-```
+  let updateSpace = await saasInstance
+    .Put({
+      path: `spaces/1a002233cdd44555566ee77f`,
+      data,
+      contentType: "application/json",
+    })
+    .catch(function (e) {
+      // do something with the error here
+      // if Qlik is raising the error then the format of the error will be { status: XXX, statusText: XXXXY, message: XXXXXXX }
+      // if Qlik is NOT raising the error then the format is: { message: XXXXXXX } (no status)
+    });
+  ```
 
 ## Authentication
 
