@@ -12,7 +12,7 @@ let config = {
 let saasInstance = new qlikSaas(config);
 
 describe("CSP origins operations", function () {
-  it("Create CSP Origin", async function () {
+  it("Create CSP Origin (POST)", async function () {
     let data = {
       name: "Test Origin",
       description: "Origin created for testing purposes",
@@ -32,13 +32,13 @@ describe("CSP origins operations", function () {
 
     expect(cspOrigin).to.have.property("id");
   });
-  it("Get CSP Origins", async function () {
+  it("Get CSP Origins (GET)", async function () {
     let cspOrigins = await saasInstance.Get("csp-origins");
 
     expect(cspOrigins).to.have.length.greaterThan(0);
   });
 
-  it("Delete CSP Origins", async function () {
+  it("Delete CSP Origins (DELETE)", async function () {
     let cspOrigins = await saasInstance.Get("csp-origins");
 
     let originForDelete = cspOrigins.filter(function (c) {

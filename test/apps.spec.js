@@ -13,12 +13,12 @@ let config = {
 let saasInstance = new qlikSaas(config);
 
 describe("App operations", function () {
-  it("Import app", async function () {
+  it("Import app (POST)", async function () {
     this.timeout(60000);
     let qvfFile = fs.readFileSync(process.env.QVF_PATH);
 
     let importFile = await saasInstance.Post({
-      path: "apps/import?mode=NEW&name=Consumer Sales",
+      path: `apps/import?mode=NEW&name=${process.env.QVF_NAME}`,
       contentType: "application/octet-stream",
       data: qvfFile,
     });
@@ -26,7 +26,7 @@ describe("App operations", function () {
     expect(importFile).to.have.property("attributes");
   });
 
-  it("Export app", async function () {
+  it("Export app (POST)", async function () {
     this.timeout(60000);
     let getAppId = await saasInstance
       .Get("items?resourceType=app")
@@ -48,5 +48,49 @@ describe("App operations", function () {
     );
 
     expect(importFile).to.have.property("attributes");
+  });
+
+  it("Update app info (PUT)", async function () {
+    this.timeout(60000);
+
+    let getAppId = await saasInstance
+      .Get("items?resourceType=app")
+      .then(function (apps) {
+        return apps.filter(
+          (a) => a.name === process.env.QVF_NAME
+        )[0].resourceId;
+      });
+
+    let data = {
+      attributes: {
+        description: "Updated description",
+      },
+    };
+
+    let updateApp = await saasInstance.Put({
+      path: `apps/${getAppId}`,
+      data: data,
+    });
+
+    expect(updateApp.attributes).to.have.property(
+      "description",
+      data.attributes.description
+    );
+  });
+
+  it("Delete app (DELETE)", async function () {
+    let cspOrigins = await saasInstance.Get("csp-origins");
+
+    let originForDelete = cspOrigins.filter(function (c) {
+      return c.name == "Test Origin";
+    });
+
+    if (originForDelete.length == 0) throw "CSP origin do not exists";
+
+    let deleteResult = await saasInstance.Delete(
+      `csp-origins/${originForDelete[0].id}`
+    );
+
+    expect(deleteResult).to.have.length.property("status", 204);
   });
 });

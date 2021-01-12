@@ -13,7 +13,7 @@ let config = {
 let saasInstance = new qlikSaas(config);
 
 describe("Extensions operations", function () {
-  it("Upload new extension", async function () {
+  it("Upload new extension (POST)", async function () {
     this.timeout(60000);
     let zipFile = fs.readFileSync(process.env.EXTENSION_PATH);
 
@@ -26,7 +26,7 @@ describe("Extensions operations", function () {
     expect(spaces).to.have.property("userId");
   });
 
-  it("Delete extension", async function () {
+  it("Delete extension (DELETE)", async function () {
     this.timeout(60000);
     let extension = await saasInstance.Get("extensions").then(function (ex) {
       return ex.filter(function (e) {
